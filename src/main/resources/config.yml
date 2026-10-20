@@ -1,0 +1,117 @@
+# ============================================================================
+#  InterBar - InterTime            Paper / Spigot  1.16.5  ->  26.x
+# ============================================================================
+# Кольори: &a &b &c &e &f &7 ... | жирний &l | скинути &r | HEX: &#00e5ff
+# Плейсхолдери:
+#   %player% %rank% %online% %max% %ping% %tps% %world% %x% %y% %z% %time% %date%
+#   %kills% (вбивства гравців)  %deaths% (смерті)  %kdr%  %mobkills% (вбито мобів)
+#   %jumps% %playtime% %health%
+# Якщо встановлено PlaceholderAPI - працюють і його плейсхолдери.
+
+# Як часто оновлювати (в тіках, 20 = 1 секунда). 5 = плавна анімація заголовка.
+update-ticks: 5
+
+# ============================ СКОРБОРД СПРАВА ============================
+sidebar:
+  enabled: true
+  # Назва сервера і колір (градієнт від -> до, з анімацією)
+  title: "INTERTIME"
+  title-from: "#00e5ff"
+  title-to: "#7c4dff"
+  title-bold: true
+  title-animation: true
+  title-step: 0.08          # швидкість руху градієнта
+  # Сторінки змінюють одна одну кожні N секунд. Одна сторінка = без змін.
+  # На кожній максимум 15 рядків.
+  page-seconds: 8
+  pages:
+    boi:
+      - "&8%date%  &7%time%"
+      - " "
+      - "&b\u258d &fГравець"
+      - "&7  \u25c6 &f%player%"
+      - "&7  \u2605 &e%rank%"
+      - " "
+      - "&b\u258d &fБойова статистика"
+      - "&7  \u2694 Вбивств: &a%kills%"
+      - "&7  \u271d Смертей: &c%deaths%"
+      - "&7  \u2716 K/D: &e%kdr%"
+      - "&7  \u2620 Мобів: &f%mobkills%"
+      - " "
+      - "&bplay.intertime.net"
+    server:
+      - "&8%date%  &7%time%"
+      - " "
+      - "&b\u258d &fСервер"
+      - "&7  \u263b Онлайн: &a%online%&7/&a%max%"
+      - "&7  \u26a1 TPS: &a%tps%"
+      - "&7  \u27a4 Пінг: &e%ping%мс"
+      - " "
+      - "&b\u258d &fТи"
+      - "&7  \u2764 Здоров'я: &c%health%"
+      - "&7  \u231a Зіграно: &f%playtime%"
+      - "&7  \u2726 Світ: &f%world%"
+      - " "
+      - "&bplay.intertime.net"
+
+# ============================ БОССБАР ============================
+bossbar:
+  enabled: true
+  interval: 10          # секунд на одне повідомлення
+  # color: PINK BLUE RED GREEN YELLOW PURPLE WHITE
+  # style: PROGRESS NOTCHED_6 NOTCHED_10 NOTCHED_12 NOTCHED_20
+  messages:
+    - text: "&#00e5ff&lЛаскаво просимо на &#7c4dff&lINTERTIME&#00e5ff&l, &f&l%player%&#00e5ff&l!"
+      color: BLUE
+      style: PROGRESS
+    - text: "&e\u2694 Вбивств: &f%kills% &8| &c\u271d Смертей: &f%deaths%"
+      color: RED
+      style: NOTCHED_10
+    - text: "&a\u263b Онлайн: &f%online%&7/&f%max% &8| &b\u27a4 Пінг: &f%ping%мс"
+      color: GREEN
+      style: NOTCHED_12
+    - text: "&d\u2726 Налаштування панелей: &f/bar"
+      color: PURPLE
+      style: NOTCHED_6
+
+# ============================ TAB ============================
+tab:
+  enabled: true
+  # Сортування гравців за рангом + префікс над головою
+  sort-by-rank: true
+  header:
+    - " "
+    - "&#00e5ff&lINTERTIME"
+    - "&7Онлайн: &f%online%&7/&f%max%"
+    - " "
+  footer:
+    - " "
+    - "&7Пінг: &a%ping%мс &8| &7TPS: &a%tps%"
+    - "&bplay.intertime.net"
+    - " "
+
+# ============================ РАНГИ ============================
+# Перший збіг за правом (permission) виграє. Останній ранг має бути без права.
+# Видавай права через LuckPerms: /lp user Нік permission set intertime.bar.rank.vip
+# prefix: після жирного кольору ставь &r, щоб ім'я не стало жирним.
+ranks:
+  - id: owner
+    permission: intertime.bar.rank.owner
+    prefix: "&c&lOWNER&r "
+    color: red
+  - id: admin
+    permission: intertime.bar.rank.admin
+    prefix: "&4&lADMIN&r "
+    color: red
+  - id: moder
+    permission: intertime.bar.rank.moder
+    prefix: "&9&lMODER&r "
+    color: aqua
+  - id: vip
+    permission: intertime.bar.rank.vip
+    prefix: "&6&lVIP&r "
+    color: yellow
+  - id: player
+    permission: ""
+    prefix: "&7"
+    color: gray
